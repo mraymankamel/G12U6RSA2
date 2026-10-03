@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Theme Name: Aurora Prism (Not shown to students) -->
+    <title>Mr. Ayman Kamel - Assessment Platform</title>
+
+    <meta property="og:title" content="🌟 التحدي الأكبر 🚀">
+    <meta property="og:description" content="تحدي استثنائي مصمم لقياس تركيزك الحقيقي في قواعد اللغة. هل تقبل التحدي؟">
+    <meta property="og:image" content="https://dummyimage.com/1200x630/0A0A0A/00F0FF.png&text=Elite+Challenge">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        /* 🌌 Aurora Prism Theme */
+        :root {
+            --bg-dark: #0A0A0A; /* Void Black */
+            --glass-bg: rgba(15, 15, 20, 0.7); /* Deep Glass */
+            --glass-border: rgba(0, 240, 255, 0.3); /* Aurora Cyan Border */
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --q-font-size: 22px; 
+            --error-color: #FF2A5F; /* Plasma Red */
+            --success-color: #00FFCC; /* Aurora Mint */
+        }
+
+        /* 🌈 Chroma Shifts (Aurora Waves) */
+        body.theme-1 { --accent: #00F0FF; --accent-glow: rgba(0, 240, 255, 0.4); } /* Cyan */
+        body.theme-2 { --accent: #FF00E4; --accent-glow: rgba(255, 0, 228, 0.4); } /* Magenta */
+        body.theme-3 { --accent: #00FFCC; --accent-glow: rgba(0, 255, 204, 0.4); } /* Mint */
+        body.theme-4 { --accent: #7B2CBF; --accent-glow: rgba(123, 44, 191, 0.4); } /* Deep Violet */
+        body.theme-5 { --accent: #FFD700; --accent-glow: rgba(255, 215, 0, 0.4); } /* Starlight Gold */
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+        input { -webkit-user-select: auto !important; -moz-user-select: auto !important; -ms-user-select: auto !important; user-select: auto !important; pointer-events: auto !important;}
+        .review-item *, .explanation-box * { -webkit-user-select: text; user-select: text; }
+
+        body, .glass-panel, .accent-text, .btn, .timer-box, .badge-award, .bg-orb, .vip-phone, header img, .hud-progress-wrapper::before {
+            transition: background 1.5s ease, border-color 1.5s ease, box-shadow 1.5s ease, color 1.5s ease, transform 0.3s ease;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.04), transparent 50%), 
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 228, 0.04), transparent 50%);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 20px 10px;
+            overflow-x: hidden;
+        }
+        
+        .bg-orb {
+            position: fixed; top: -30%; left: 50%; transform: translateX(-50%); width: 85vw; height: 85vw;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            z-index: 0; filter: blur(140px); pointer-events: none;
+        }
+
+        .main-container {
+            width: 100%; max-width: 850px; margin: 0 auto;
+            background: var(--glass-bg); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+            border-radius: 28px; border: 1px solid var(--glass-border);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.05);
+            display: flex; flex-direction: column; position: relative; z-index: 10;
+        }
+
+        header {
+            padding: 40px 20px 30px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+            border-bottom: 1px solid var(--glass-border); position: relative;
+        }
+        
+        header img {
+            width: 115px; height: 115px; object-fit: contain; margin-top: 10px;
+            background-color: #FFFFFF !important; padding: 6px; border-radius: 50%;
+            border: 3px solid var(--accent); box-shadow: 0 0 40px var(--accent-glow);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; flex-shrink: 0; aspect-ratio: 1/1;
+        }
+        header img:hover { transform: scale(1.08) rotate(5deg); }
+        
+        header h1 { font-family: 'Outfit', sans-serif; font-size: 32px; color: var(--text-main); font-weight: 900; margin: 10px 0 0; letter-spacing: 1px; direction: ltr;}
+        header .job-title { font-size: 15px; font-weight: 800; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin: 0 0 5px; direction: ltr;}
+        header .slogan { 
+            font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600; font-style: italic; 
+            color: var(--accent); letter-spacing: 1px; margin: 5px 0 10px 0; 
+            direction: ltr; unicode-bidi: isolate; display: inline-block;
+        }
+        
+        .vip-phone {
+            background: linear-gradient(135deg, var(--accent), #1E1E1E); color: #FFF; font-family: 'Outfit', sans-serif;
+            padding: 8px 28px; border-radius: 30px; font-weight: 900; font-size: 16px; letter-spacing: 2px;
+            box-shadow: 0 5px 25px var(--accent-glow); margin-top: 5px;
+            display: inline-flex; align-items: center; justify-content: center; direction: ltr;
+        }
+
+        .time-controls { position: absolute; top: 20px; left: 20px; display: flex; align-items: center; gap: 8px; z-index: 20; direction: ltr; }
+        .timer-box {
+            background: rgba(0,0,0,0.8); color: var(--text-main); border: 1px solid var(--glass-border);
+            border-radius: 12px; padding: 0 16px; height: 44px; display: flex; align-items: center;
+            font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 1px;
+            box-shadow: inset 0 2px 15px rgba(0,0,0,0.8);
+        }
+        .time-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; margin-right: 8px; animation: blink 1s infinite; box-shadow: 0 0 10px var(--accent);}
+        .timer-box.danger { color: var(--error-color); border-color: var(--error-color); box-shadow: 0 0 20px rgba(255, 42, 95, 0.4);}
+        .timer-box.danger .time-dot { background: var(--error-color); box-shadow: 0 0 10px var(--error-color);}
+        .hidden-timer { color: transparent !important; border-color: rgba(255,255,255,0.05); box-shadow: none;}
+        
+        .icon-btn {
+            background: rgba(0,0,0,0.6); color: var(--text-muted); border: 1px solid var(--glass-border);
+            border-radius: 12px; width: 44px; height: 44px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 18px; outline: none; transition: 0.3s;
+        }
+        .icon-btn:hover { border-color: var(--accent); color: var(--text-main); background: rgba(0, 240, 255, 0.1); box-shadow: 0 0 15px var(--accent-glow);}
+        
+        .eye-care-controls { position: absolute; top: 20px; right: 20px; display: flex; gap: 8px; z-index: 20;}
+
+        /* --- 🌟 هندسة العبارات التحفيزية 🌟 --- */
+        .cheer-wrapper { position: fixed; top: -120px; right: 20px; z-index: 99999; pointer-events: none; transition: top 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .cheer-wrapper.show { top: 20px; }
+        .cheer-bubble {
+            background: rgba(10, 10, 15, 0.98); backdrop-filter: blur(25px); border-radius: 16px;
+            padding: 18px 24px; display: flex; align-items: center; gap: 18px;
+            border: 1px solid var(--glass-border); border-right: 5px solid var(--accent);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9); direction: rtl;
+        }
+        .cheer-bubble img { 
+            width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--accent); 
+            background: #FFFFFF !important; padding: 4px; flex-shrink: 0; object-fit: contain; aspect-ratio: 1/1;
+            margin: auto 0;
+        }
+        .cheer-text { display: flex; flex-direction: column; width: 100%; min-width: 230px; justify-content: center; gap: 10px;}
+        .cheer-en { font-family:'Outfit', sans-serif; font-size:15px; font-weight:900; color:#fff; direction:ltr; text-align:left;}
+        .cheer-separator { width: 100%; height: 1px; background: rgba(255,255,255,0.1); border-bottom: 1px dashed rgba(255,255,255,0.05); }
+        .cheer-ar { font-family:'Cairo', sans-serif; font-size:14px; font-weight:800; color:var(--accent); direction:rtl; text-align:right;}
+
+        .shake-active { animation: shake 0.4s both; }
+        @keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-5px);} 50% {transform: translateX(5px);} 75% {transform: translateX(-5px);} }
+        @keyframes blink { 0%, 100% {opacity:1;} 50% {opacity:0.2;} }
+
+        .content-body { padding: 40px 30px; flex: 1; position: relative;}
+
+        #start-screen { text-align: center; }
+        .welcome-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(0,0,0,0.5)); border-radius: 20px; padding: 45px 25px; margin-bottom: 30px;
+            border: 1px solid var(--glass-border); box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+        }
+        .welcome-card h3 { font-size: 26px; font-weight: 900; color: var(--accent); margin-bottom: 20px; text-shadow: 0 0 20px var(--accent-glow);}
+        .welcome-card p { font-size: 16px; color: var(--text-muted); line-height: 1.8; font-weight: 600;}
+
+        /* Time Attack Grid Styles */
+        .ta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 30px; }
+        .ta-btn { 
+            background: rgba(255,255,255,0.03); color: var(--text-muted); border: 1px solid rgba(255,255,255,0.1); 
+            padding: 14px; font-size: 16px; border-radius: 14px; font-weight: 800; font-family: 'Outfit', 'Cairo'; transition: 0.3s; cursor: pointer;
+        }
+        .ta-btn:hover { background: rgba(255,255,255,0.08); color: var(--text-main); }
+        .ta-btn.active { 
+            background: rgba(0, 240, 255, 0.15); color: var(--accent); border-color: var(--accent); 
+            box-shadow: 0 0 25px var(--accent-glow); transform: scale(1.02);
+        }
+
+        .avatar-grid { display: flex; justify-content: center; gap: 20px; margin-bottom: 35px; }
+        .avatar-option { font-size: 34px; padding: 14px 20px; background: rgba(0,0,0,0.5); border-radius: 16px; cursor: pointer; border: 1px solid var(--glass-border); transition:0.3s;}
+        .avatar-option.selected { background: rgba(0, 240, 255, 0.1); border-color: var(--accent); box-shadow: 0 0 25px var(--accent-glow); transform: scale(1.15) translateY(-5px);}
+
+        .input-group input {
+            width: 100%; padding: 22px; border-radius: 16px; border: 1px solid var(--glass-border);
+            background: rgba(0,0,0,0.7); color: var(--accent); font-size: 18px; outline: none; margin-bottom: 30px; font-weight: 800; text-align: center;
+            box-shadow: inset 0 2px 15px rgba(0,0,0,0.9); transition: 0.3s;
+        }
+        .input-group input:focus { border-color: var(--accent); box-shadow: inset 0 2px 15px rgba(0,0,0,0.9), 0 0 20px var(--accent-glow); background: rgba(0,0,0,0.9); }
+        .input-group input::placeholder { color: #475569; font-weight: 600;}
+
+        #quiz-screen { display: none; }
+        
+        .hud-progress-wrapper {
+            background: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.8)); border: 1px solid var(--glass-border);
+            border-radius: 16px; padding: 20px 24px 30px 24px; margin-bottom: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            position: relative;
+        }
+        .hud-progress-wrapper::before {
+            content: ''; position: absolute; top: 0; right: 0; width: 6px; height: 100%;
+            background: var(--accent); border-radius: 0 16px 16px 0;
+        }
+        .hud-stats { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; direction: rtl; }
+        .hud-student { font-family: 'Cairo', sans-serif; font-weight: 800; font-size: 17px; color: #fff; display: flex; align-items: center; gap: 14px;}
+        .hud-student .avatar-ring {
+            background: rgba(0, 240, 255, 0.05); border: 2px solid var(--accent);
+            width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 15px var(--accent-glow); font-size: 24px; flex-shrink: 0; aspect-ratio: 1 / 1;
+        }
+        .hud-counter { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 18px; color: var(--accent); letter-spacing: 2px; direction: ltr; flex-shrink: 0;}
+        
+        .hud-bar-container {
+            margin-top: 22px; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; position: relative; z-index: 2; direction: ltr; margin-right: 22px; 
+            box-shadow: inset 0 1px 5px rgba(0,0,0,0.9);
+        }
+        .hud-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #FFF); width: 0%; transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 0 15px var(--accent); position: relative; border-radius: 4px;}
+        .hud-avatar-runner {
+            position: absolute; right: -22px; top: 50%; transform: translateY(-50%);
+            width: 44px; height: 44px; background: var(--bg-dark); border: 2px solid var(--accent);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 22px; box-shadow: 0 0 20px var(--accent), inset 0 0 10px rgba(0,0,0,0.8); z-index: 5;
+            transition: border-color 1.5s ease, box-shadow 1.5s ease; aspect-ratio: 1 / 1; line-height: 1;
+        }
+
+        .station-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(0,0,0,0.5)); padding: 40px 30px; border-radius: 20px; margin-bottom: 35px;
+            border: 1px solid var(--glass-border); box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: relative; z-index:10;
+        }
+        
+        .question-text { display: flex; align-items: center; gap: 20px; margin-bottom: 40px; direction: ltr; position: relative; min-height: 50px;}
+        .question-text-wrapper { flex: 1; font-family: 'Outfit', sans-serif; font-size: var(--q-font-size); font-weight: 800; color: #fff; line-height: 1.7; transition: font-size 0.3s;}
+        .tts-btn-container { flex-shrink: 0; align-self: center; display: flex; align-items: center; justify-content: center;}
+        
+        .options-list { display: flex; flex-direction: column; gap: 18px; direction: ltr; opacity: 0; pointer-events: none; transition: opacity 0.5s;}
+        .options-list.show-options { opacity: 1; pointer-events: auto; }
+        
+        .option-item {
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+            border-left: 5px solid var(--text-muted); border-radius: 14px; padding: 20px 24px; 
+            cursor: pointer; display: flex; align-items: center; gap: 20px; transition: 0.2s;
+        }
+        .option-item:hover { background: rgba(255,255,255,0.06); border-left-color: var(--accent); }
+        .option-item.selected { 
+            background: rgba(0, 240, 255, 0.08); border-color: var(--accent); border-left: 6px solid var(--accent);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+        .opt-letter {
+            background: rgba(0,0,0,0.8); color: var(--accent); width: 44px; height: 44px; flex-shrink: 0;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 18px; border: 1px solid var(--glass-border); aspect-ratio: 1/1;
+        }
+        .option-item.selected .opt-letter { background: var(--accent); color: var(--bg-dark); border-color: var(--accent);}
+        .opt-text { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 19px; color: #fff; }
+
+        .action-btns { display: flex; justify-content: space-between; gap: 20px; direction: ltr;}
+        .btn {
+            padding: 20px 30px; border-radius: 16px; font-weight: 900; font-size: 17px; border: 1px solid var(--accent);
+            cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            font-family: 'Outfit', 'Cairo', sans-serif; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+        }
+        .btn-outline { background: transparent; color: var(--accent); }
+        .btn-outline:hover:not(:disabled) { background: var(--accent); color: var(--bg-dark); box-shadow: 0 0 25px var(--accent-glow);}
+        .btn-prev { min-width: 140px; border-color: rgba(255,255,255,0.15); color: var(--text-muted);}
+        .btn-prev:hover:not(:disabled) { border-color: var(--text-main); color: var(--text-main); background:rgba(255,255,255,0.05); box-shadow:none;}
+        .btn-prev:disabled { opacity: 0.3; cursor: not-allowed;}
+        
+        .btn-solid { background: linear-gradient(135deg, var(--accent), #1E1E1E); color: #FFF; box-shadow: 0 8px 30px var(--accent-glow); flex: 1; font-size:19px;}
+        .btn-solid:hover { transform: translateY(-3px); box-shadow: 0 12px 35px var(--accent-glow);}
+        .btn-solid:disabled { opacity: 0.5; cursor: wait; background: rgba(0,0,0,0.6); color: var(--text-muted); box-shadow: none; border-color:var(--glass-border); transform: none;}
+
+        #result-screen { display: none; direction: rtl; }
+        .score-card { background: rgba(0,0,0,0.5); border-radius: 24px; padding: 50px 25px; text-align: center; margin-bottom: 40px; border: 1px solid var(--glass-border); position: relative;}
+        
+        .score-circle {
+            width: 240px; height: 240px; border-radius: 50%; margin: 0 auto 35px; 
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Outfit', sans-serif; font-size: 65px; font-weight: 900; color: var(--bg-dark); 
+            background: linear-gradient(135deg, var(--accent), #FFF); border: 12px solid var(--bg-dark); 
+            box-shadow: 0 0 80px var(--accent-glow), 0 0 0 5px var(--accent);
+            white-space: nowrap; direction: ltr; letter-spacing: 2px;
+        }
+        #score-percent-text { font-family: 'Outfit', 'Cairo'; font-size: 26px; font-weight: 900; color: var(--accent); margin-bottom: 12px; letter-spacing: 1.5px;}
+        
+        #student-display-name { font-size: 30px; font-weight: 900; color: #fff; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; gap: 15px;}
+        .result-avatar { 
+            font-size: 36px; background: rgba(0, 240, 255, 0.05); border: 2px solid var(--accent); box-shadow: 0 0 20px var(--accent-glow);
+            border-radius: 50%; width: 70px; height: 70px; display: inline-flex; align-items: center; justify-content: center;
+            flex-shrink: 0; aspect-ratio: 1/1;
+        }
+        
+        .scratch-container { position: relative; display: inline-block; margin-top: 20px; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.8); border: 1px solid var(--glass-border);}
+        .badge-award { display: inline-block; background: linear-gradient(135deg, var(--accent), #1E1E1E); color: #FFF; padding: 24px 40px; font-weight: 900; font-size: 24px; min-width: 320px; min-height: 85px; font-family: 'Outfit', 'Cairo'; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; justify-content: center;}
+        #scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: crosshair; z-index: 5; }
+
+        .result-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 50px;}
+        .result-actions .btn { width: 100%; font-size: 16px; padding: 20px; border-radius: 14px;}
+        .btn-full { grid-column: span 2; }
+        .btn-whatsapp { background: #25D366; color: #fff; border-color: #25D366; }
+        .btn-whatsapp:hover { box-shadow: 0 0 25px rgba(37,211,102,0.4); background:#1EBE5D; color:#fff;}
+        .btn-pdf { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); color: #fff;}
+        .btn-pdf:hover { background: rgba(255,255,255,0.1); color: #fff;}
+
+        .review-item { background: rgba(0,0,0,0.4); border-radius: 16px; padding: 30px; margin-bottom: 25px; text-align: left; direction: ltr; border: 1px solid var(--glass-border);}
+        .review-item.is-correct { border-left: 6px solid var(--success-color); }
+        .review-item.is-wrong { border-left: 6px solid var(--error-color); }
+        .explanation-box { background: rgba(0,0,0,0.6); border-radius: 12px; padding: 22px; margin-top: 20px; border-right: 4px solid var(--accent); display: flex; flex-direction: column; gap: 16px; }
+        .exp-en { direction: ltr; text-align: left; color: var(--text-muted); font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600; line-height: 1.6; }
+        .exp-separator { width: 100%; height: 1px; background: rgba(255,255,255,0.1); border-bottom: 1px dashed rgba(255,255,255,0.15); }
+        .exp-ar { direction: rtl; text-align: right; color: #fff; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 16px; line-height: 1.7; }
+
+        #cheat-modal, #pause-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(5, 5, 10, 0.98); align-items: center; justify-content: center; backdrop-filter: blur(30px);
+        }
+        #cheat-modal { z-index: 999999; }
+        #pause-modal { z-index: 999998; }
+        .cheat-content {
+            background: #000; padding: 50px; border-radius: 24px; text-align: center;
+            max-width: 90%; width: 500px; border: 2px solid var(--error-color); box-shadow: 0 0 70px rgba(255, 42, 95, 0.25);
+        }
+        .cheat-content h1 { color: var(--error-color); font-size: 32px; margin-bottom: 20px; font-weight: 900;}
+        .cheat-content p { color: var(--text-main); font-size: 18px; line-height: 1.8; font-weight: 600; margin-bottom: 35px;}
+
+        @media print {
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-shadow: none !important;}
+            body { background: #fff !important; color: #000 !important; }
+            body > * { display: none !important; }
+            body.print-errors-only .main-container,
+            body.print-errors-only .main-container #result-screen,
+            body.print-errors-only .main-container #result-screen #review-list { display: block !important; }
+            body.print-errors-only .main-container { box-shadow: none !important; border: none !important; width: 100% !important; margin: 0 !important; padding: 0 !important; background: #fff !important;}
+            .score-card, .result-actions, header, h3 { display: none !important; }
+            .review-item { border: 1px solid #ccc !important; background: #f9f9f9 !important; page-break-inside: avoid; margin-bottom: 20px !important; padding: 20px !important;}
+            .review-item.is-correct { display: none !important; } 
+            .review-item.is-wrong { border-left: 6px solid #FF2A5F !important; }
+            .review-item * { color: #000 !important; text-shadow: none !important;}
+            .explanation-box { background: #eee !important; border-right: 4px solid #666 !important; }
+            .exp-ar { display: block !important; color: #000 !important; }
+            .exp-separator { border-bottom: 1px solid #ccc !important; }
+            body.print-errors-only::before {
+                content: "Smart Revision Report - Errors Only (Mr. Ayman Kamel)";
+                display: block; text-align: center; font-size: 22px; font-weight: bold; margin-bottom: 25px; color: #000;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 12px 6px; }
+            .main-container { width: 100%; border-radius: 20px;}
+            header { padding: 45px 15px 25px; }
+            .vip-phone { font-size: 14px; padding: 6px 20px; top: 15px; }
+            header img { width: 100px; height: 100px; margin-top: 15px;}
+            header h1 { font-size: 26px; }
+            
+            .ta-grid { grid-template-columns: 1fr; gap: 10px; }
+            .time-controls { top: 12px; left: 12px; gap: 6px;}
+            .timer-box { font-size: 15px; height: 40px; padding: 0 14px; }
+            .icon-btn { width: 40px; height: 40px; font-size: 16px; }
+            .eye-care-controls { top: 12px; right: 12px; gap: 6px;}
+
+            .cheer-wrapper { right: 10px; max-width: calc(100vw - 20px); }
+            .cheer-wrapper.show { top: 15px; }
+            .cheer-bubble { padding: 14px 18px; gap: 14px; }
+            .cheer-bubble img { width: 50px; height: 50px; }
+            .cheer-en { font-size: 14px; }
+            .cheer-ar { font-size: 13px; }
+
+            .content-body { padding: 25px 20px; }
+            .welcome-card { padding: 35px 20px; }
+            .welcome-card h3 { font-size: 24px; }
+            .avatar-option { font-size: 28px; padding: 12px 16px; }
+            
+            .hud-progress-wrapper { padding: 16px 20px 24px 20px; }
+            .hud-student { font-size: 16px; }
+            .hud-student .avatar-ring { width: 36px; height: 36px; font-size: 18px;}
+            .hud-counter { font-size: 16px; }
+            .hud-avatar-runner { width: 36px; height: 36px; font-size: 18px; right: -18px; }
+            .hud-bar-container { margin-right: 18px; }
+            
+            .station-card { padding: 30px 20px; }
+            .question-text { font-size: var(--q-font-size); gap: 15px; margin-bottom: 30px;}
+            .opt-letter { width: 38px; height: 38px; font-size: 16px; }
+            .opt-text { font-size: 17px; }
+            .option-item { padding: 16px 20px; }
+            
+            .action-btns { flex-direction: column-reverse; gap: 14px; margin-top: 35px;}
+            .btn { width: 100%; font-size: 16px; padding: 18px; }
+            
+            .result-actions { grid-template-columns: 1fr; gap: 14px;}
+            .btn-full { grid-column: span 1; }
+            
+            .score-circle { width: 190px; height: 190px; font-size: 50px; border-width: 8px; box-shadow: 0 0 45px var(--accent-glow), 0 0 0 3px var(--accent); }
+            .result-avatar { width: 60px; height: 60px; font-size: 30px; }
+            .badge-award { font-size: 19px; min-width: 260px; padding: 20px;}
+        }
+    </style>
+</head>
+<body id="main-body" class="theme-1">
+
+<div class="bg-orb"></div>
+<div class="bg-grid"></div>
+
+<!-- 🛡️ Anti-Cheat Modal -->
+<div id="cheat-modal">
+    <div class="cheat-content">
+        <h1>🚨 نظام المراقبة الصامت</h1>
+        <p id="cheat-msg">تم رصد فقدان التركيز والخروج من شاشة التقييم.</p>
+        <button type="button" onclick="document.getElementById('cheat-modal').style.display='none'" class="btn btn-outline" style="color:var(--error-color); border-color:var(--error-color); width:100%;">أعتذر، سأحافظ على تركيزي</button>
+    </div>
+</div>
+
+<!-- ⏸️ Secure Pause Modal -->
+<div id="pause-modal">
+    <div class="cheat-content" style="border-color: var(--accent); box-shadow: 0 0 60px var(--accent-glow);">
+        <h1 style="color: var(--accent);">⏸️ إيقاف مؤقت</h1>
+        <p id="pause-count-msg" style="color: var(--text-main); font-size: 18px; margin-bottom: 20px;"></p>
+        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 30px;">رادار الغش لا يزال يعمل. الخروج من المتصفح سيسجل تحذيراً.</p>
+        <button type="button" onclick="togglePause()" class="btn btn-solid" style="width:100%;">▶️ استئناف التحدي</button>
+    </div>
+</div>
+
+<div class="main-container" id="app-container">
+    <header>
+        <div class="time-controls" id="timer-container" style="display: none;">
+            <div class="timer-box" id="timer-box"><div class="time-dot"></div><span id="timer-text">--:--</span></div>
+            <button type="button" class="icon-btn" id="btn-pause" onclick="togglePause()" title="إيقاف مؤقت">⏸️</button>
+            <button type="button" class="icon-btn" id="btn-timer-view" onclick="toggleTimerView()" title="إخفاء الوقت">⏱️</button>
+        </div>
+
+        <div class="eye-care-controls" id="eye-care-container" style="display: none;">
+            <button type="button" class="icon-btn" onclick="changeFontSize(2)" title="تكبير الخط">A+</button>
+            <button type="button" class="icon-btn" onclick="changeFontSize(-2)" title="تصغير الخط">A-</button>
+        </div>
+
+        <div class="cheer-wrapper" id="cheer-wrapper">
+            <div class="cheer-bubble">
+                <img src="https://lh3.googleusercontent.com/d/1BqwA44F0BAwWMSwBnBeDIkfkNgBEtif-" alt="Mr. Ayman Kamel">
+                <div class="cheer-text">
+                    <div class="cheer-en" id="cheer-en"></div>
+                    <div class="cheer-separator"></div>
+                    <div class="cheer-ar" id="cheer-ar"></div>
+                </div>
+            </div>
+        </div>
+
+        <img src="https://lh3.googleusercontent.com/d/1BqwA44F0BAwWMSwBnBeDIkfkNgBEtif-" alt="Mr. Ayman Kamel Logo" onclick="triggerEasterEgg()">
+        <h1>Mr. Ayman Kamel</h1>
+        <p class="job-title">English Language Educator</p>
+        <p class="slogan" style="unicode-bidi: isolate; direction: ltr;">"Let's learn together!"</p>
+        <div class="vip-phone">📞 01284749899</div>
+    </header>
+
+    <div class="content-body">
+        <div id="start-screen">
+            <div class="welcome-card">
+                <h3>🌟 خطوتك نحو القمة تبدأ هنا!</h3>
+                <p>أنت دلوقتي قدام تحدي مش بيعترف غير بالتركيز المطلق. التحدي ده مفيش فيه مجال للصدفة، كل سؤال متصمم يقيس مدى فهمك للقاعدة. إحنا هنا عشان نحتفل بنجاحك!<br><br>جاهز تثبت جدارتك؟</p>
+            </div>
+
+            <h4 style="color: var(--text-main); font-weight: 800; margin-bottom: 15px; text-align: center;">اختار مستوى التحدي الزمني:</h4>
+            <div class="ta-grid">
+                <button type="button" class="btn ta-btn" onclick="setTimeAttack(20, this)">⚡ 20ث (أساطير)</button>
+                <button type="button" class="btn ta-btn" onclick="setTimeAttack(30, this)">🔥 30ث (محترفين)</button>
+                <button type="button" class="btn ta-btn" onclick="setTimeAttack(45, this)">⏳ 45ث (أبطال)</button>
+                <button type="button" class="btn ta-btn active" onclick="setTimeAttack(0, this)">🛑 كلاسيك (وقت مفتوح)</button>
+            </div>
+
+            <h4 style="color: var(--text-main); font-weight: 800; margin-bottom: 18px; text-align: center; margin-top:20px;">اختار مفتاح العبور بتاعك:</h4>
+            <div class="avatar-grid">
+                <div class="avatar-option selected" onclick="selectAvatar(this, '🌌')">🌌</div>
+                <div class="avatar-option" onclick="selectAvatar(this, '🚀')">🚀</div>
+                <div class="avatar-option" onclick="selectAvatar(this, '⚡')">⚡</div>
+                <div class="avatar-option" onclick="selectAvatar(this, '🛡️')">🛡️</div>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="studentName" placeholder="اكتب اسمك الثلاثي عشان نبدأ..." autocomplete="off" onkeypress="if(event.key === 'Enter') startQuiz()">
+            </div>
+            <button type="button" class="btn btn-solid" style="width:100%" onclick="startQuiz()">START ASSESSMENT ➔</button>
+        </div>
+
+        <div id="quiz-screen">
+            <div class="hud-progress-wrapper">
+                <div class="hud-stats">
+                    <div class="hud-student">
+                        <div class="avatar-ring" id="hud-avatar">🌌</div> <span id="hud-name">--</span>
+                    </div>
+                    <div class="hud-counter" id="progress-count">Q: 1 / 60</div>
+                </div>
+                <div class="hud-bar-container">
+                    <div class="hud-bar-fill" id="energy-bar">
+                        <div class="hud-avatar-runner" id="hud-moving-avatar">🌌</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="station-card" id="q-box">
+                <div class="question-text">
+                    <div class="question-text-wrapper">
+                        <span id="question-text-content">--</span><span class="cursor" id="typing-cursor" style="display:none;"></span>
+                    </div>
+                    <div class="tts-btn-container">
+                        <button type="button" class="icon-btn" style="border-color:var(--accent); color:var(--accent);" onclick="speakQuestion()" title="استماع">🔊</button>
+                    </div>
+                </div>
+                <div class="options-list" id="options-list"></div>
+            </div>
+
+            <div class="action-btns">
+                <button type="button" class="btn btn-prev" id="prev-btn" onclick="prevQuestion()" disabled>⬅ PREV</button>
+                <button type="button" class="btn btn-solid" id="next-btn" onclick="nextQuestion()">NEXT ➔</button>
+                <button type="button" class="btn btn-solid" id="submit-btn" onclick="calculateScore()" style="display: none;">🚀 SUBMIT</button>
+            </div>
+        </div>
+
+        <div id="result-screen">
+            <div class="score-card">
+                <div class="score-circle" id="score-percentage">0 / 0</div>
+                <div id="score-percent-text">Accuracy: 0%</div>
+                <h2 id="student-display-name"></h2>
+                
+                <div class="scratch-container">
+                    <div id="badge-award-box" class="badge-award">اخدش لترى حالتك</div>
+                    <canvas id="scratch-canvas"></canvas>
+                </div>
+                <p id="score-details" style="font-size: 16px; font-weight: 700; margin-top: 25px; color: var(--text-muted);"></p>
+            </div>
+
+            <div class="result-actions">
+                <button type="button" class="btn btn-solid btn-full" id="cert-btn" onclick="downloadCertificate()" style="display: none;">📜 استخراج شهادة النخبة</button>
+                <button type="button" class="btn btn-outline" style="background:rgba(255,255,255,0.05); color:#fff; border-color:rgba(255,255,255,0.2);" onclick="downloadSmartRevision()">📥 تحميل روشتة الأخطاء PDF</button>
+                <button type="button" class="btn btn-outline btn-whatsapp" onclick="shareToTeacherWhatsApp()">👨‍🏫 إرسال التقرير لمستر أيمن</button>
+                <button type="button" class="btn btn-outline btn-whatsapp" onclick="shareToParentWhatsApp()">👨‍👩‍👧 تقرير ولي الأمر (واتساب)</button>
+                <button type="button" class="btn btn-outline" style="color:var(--accent); border-color:var(--accent);" onclick="sharePeerChallenge()">🔥 تحدى زميلك (فيرال)</button>
+                <button type="button" class="btn btn-outline" onclick="location.reload()">🔄 إعادة المحاولة</button>
+            </div>
+
+            <h3 style="text-align: right; color: var(--text-main); margin-top: 35px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; font-weight: 900;">📂 المراجعة اللحظية (Smart Revision):</h3>
+            <div id="review-list" style="margin-top: 25px;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ==========================================
+// 1. Constants & Configuration
+// ==========================================
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxps3pkSIfSFL8rwhCNMlNCEYkeL2ooxYo_6WgWRXHHL0hcY0owu-x0qRtZei0migOyxg/exec";
+const MAX_WARNINGS = 3;
+
+// ==========================================
+// 2. Global Variables
+// ==========================================
+let quizData = [];
+let currentQuestion = 0, userAnswers = {}, studentName = "", selectedAvatar = '🌌';
+let totalSeconds = 0, qTimeLeft = 0, timerInterval = null;
+let isTimeAttack = false, timeAttackLevel = 0;
+let isSubmitting = false; 
+let cheatWarnings = 0;
+let pauseCount = 0, isPaused = false;
+let audioCtx = null;
+let logoClicks = 0, logoClickTimer;
+
+// ==========================================
+// 3. Audio & Hardware Feedback
+// ==========================================
+function tryVibrate(pattern) { if (navigator.vibrate) { try { navigator.vibrate(pattern); } catch(e){} } }
+
+function initAudio() {
+    try {
+        if (!audioCtx) { const AudioContext = window.AudioContext || window.webkitAudioContext; if(AudioContext) { audioCtx = new AudioContext(); } }
+        if (audioCtx && audioCtx.state === 'suspended') { audioCtx.resume(); }
+    } catch(e) {}
+}
+
+function playTone(freq, type, duration) {
+    try {
+        initAudio(); if (!audioCtx) return;
+        let osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+        osc.type = type; osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(); osc.stop(audioCtx.currentTime + duration);
+    } catch(e) {}
+}
+
+function soundWrongTime() { tryVibrate([100, 50, 100]); playTone(150, 'sawtooth', 0.3); setTimeout(()=>playTone(100, 'sawtooth', 0.4), 200); }
+function soundBossWin() { tryVibrate([200, 100, 200, 100, 200]); [523, 659, 783, 1046, 1318].forEach((f,i)=> setTimeout(()=>playTone(f,'square',0.15), i*100)); }
+
+function speakQuestion() {
+    if ('speechSynthesis' in window) {
+        let text = quizData[currentQuestion].originalQ.replace(/_+/g, "blank").replace(/\.{3,}/g, "blank");
+        let msg = new SpeechSynthesisUtterance(text); msg.lang = 'en-US'; msg.rate = 0.85;
+        window.speechSynthesis.speak(msg);
+    }
+}
+
+function initScratchCard() {
+    const container = document.getElementById("badge-award-box");
+    const canvas = document.getElementById("scratch-canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = container.offsetWidth; canvas.height = container.offsetHeight;
+    
+    let currentAccent = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#00F0FF';
+    ctx.fillStyle = '#0A0A0A'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "bold 18px 'Cairo', sans-serif"; ctx.fillStyle = currentAccent;
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText("🪄 اخدش عشان تشوف نتيجتك", canvas.width/2, canvas.height/2);
+    
+    let isDrawing = false;
+    function scratch(e) {
+        if(!isDrawing) return; e.preventDefault();
+        let rect = canvas.getBoundingClientRect();
+        let x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+        let y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.beginPath(); ctx.arc(x, y, 35, 0, Math.PI*2); ctx.fill();
+    }
+    canvas.onmousedown = () => isDrawing = true; canvas.ontouchstart = () => isDrawing = true;
+    canvas.onmouseup = () => isDrawing = false; canvas.ontouchend = () => isDrawing = false;
+    canvas.onmousemove = scratch; canvas.ontouchmove = scratch;
+}
+
+// ==========================================
+// 4. Anti-Cheat & Security
+// ==========================================
+document.addEventListener("visibilitychange", () => {
+    const quizScreen = document.getElementById("quiz-screen");
+    if (document.hidden && quizScreen.style.display === "block" && !isSubmitting) {
+        cheatWarnings++;
+        if (cheatWarnings > MAX_WARNINGS) {
+            alert("🚨 SYSTEM OVERRIDE: تم سحب الورقة لعدم الالتزام ببروتوكول التركيز.");
+            calculateScore(); 
+        } else {
+            document.getElementById('cheat-msg').innerText = `تم رصد خروجك من النظام.\nالتحذير (${cheatWarnings} من ${MAX_WARNINGS}).\nفي المرة الرابعة سيتم سحب الورقة إجبارياً.`;
+            document.getElementById('cheat-modal').style.display = 'flex';
+            soundWrongTime();
+        }
+    }
+});
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || (e.ctrlKey && e.key === 'U') || (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'x'))) e.preventDefault();
+});
+document.addEventListener('copy', e => e.preventDefault()); document.addEventListener('paste', e => e.preventDefault()); document.addEventListener('cut', e => e.preventDefault());
+
+// ==========================================
+// 5. Utility & UI Functions
+// ==========================================
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function updateChromaShift() {
+    let levelIndex = Math.floor(currentQuestion / 12); 
+    if(levelIndex > 4) levelIndex = 4;
+    document.body.className = `theme-${levelIndex + 1}`;
+}
+
+function selectAvatar(el, avatar) {
+    document.querySelectorAll('.avatar-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected'); selectedAvatar = avatar;
+}
+
+function toggleTimerView() { document.getElementById("timer-text").classList.toggle("hidden-timer"); }
+
+function setTimeAttack(level, el) {
+    timeAttackLevel = level;
+    isTimeAttack = (level > 0);
+    document.querySelectorAll('.ta-btn').forEach(btn => btn.classList.remove('active'));
+    el.classList.add('active');
+}
+
+function changeFontSize(change) {
+    const root = document.documentElement;
+    let currentSize = parseInt(getComputedStyle(root).getPropertyValue('--q-font-size')) || 22;
+    let newSize = currentSize + change;
+    if(newSize >= 16 && newSize <= 30) { root.style.setProperty('--q-font-size', newSize + 'px'); }
+}
+
+function triggerEasterEgg() {
+    logoClicks++; clearTimeout(logoClickTimer);
+    logoClickTimer = setTimeout(() => { logoClicks = 0; }, 1500);
+    if(logoClicks >= 5) { alert("🌌 Aurora Prism Easter Egg Found! 🌌"); logoClicks = 0; }
+}
+
+// 15 New Dynamic Cheers combining English Tech + Egyptian Arabic
+const cheers = [
+    {en: "System override successful!", ar: "اخترقت الماتريكس، عاش يا بطل!"},
+    {en: "Grammar firewall bypassed!", ar: "مفيش قاعدة تقدر توقفك، الله ينور!"},
+    {en: "Logic circuit perfect!", ar: "دماغ شغالة صح، أنت ماشي ممتاز!"},
+    {en: "Data processing... Brilliant!", ar: "إجابة معلم! كمل على نفس التردد!"},
+    {en: "Cyber focus engaged!", ar: "تركيزك عالي جداً، متسمحش لأي فيروس يشتتك!"},
+    {en: "Uploading correct answer...", ar: "إجابة في الجون، بطل من يومك!"},
+    {en: "You're hacking the rules!", ar: "أنت بتلعب بالقواعد لعب، عاش!"},
+    {en: "Algorithm running smoothly!", ar: "خطواتك مظبوطة بالملي، استمر!"},
+    {en: "No bugs found in your brain!", ar: "دماغك نضيفة ومفيهاش ولا غلطة، دوس!"},
+    {en: "You are the ultimate grammar glitch!", ar: "أنت استثناء للقاعدة، أسطورة بجد!"},
+    {en: "Keep your cyber eyes on the prize!", ar: "عينك على التقفيل وشهادة النخبة السايبر!"},
+    {en: "Download complete 100%!", ar: "هانت يا وحش، قربت تخلص المهمة بنجاح!"},
+    {en: "Reboot your energy and go on!", ar: "اشحن طاقتك، وادخل على اللي بعده برواقة."},
+    {en: "Show them your code!", ar: "وريهم برمجتك الحقيقية، التحدي ده بتاعك!"},
+    {en: "Flawless execution!", ar: "تنفيذ مذهل، مفيش أي خدعة هتوقعك!"}
+];
+let lastCheerIndex = -1; 
+function triggerTeacherCheer() {
+    const wrapper = document.getElementById("cheer-wrapper");
+    let randomIndex; do { randomIndex = Math.floor(Math.random() * cheers.length); } while (randomIndex === lastCheerIndex); 
+    lastCheerIndex = randomIndex;
+    document.getElementById("cheer-en").innerText = cheers[randomIndex].en;
+    document.getElementById("cheer-ar").innerText = cheers[randomIndex].ar;
+    wrapper.classList.add("show"); setTimeout(() => { wrapper.classList.remove("show"); }, 3500);
+}
+
+// ==========================================
+// 6. Data Array (60 Questions Exact - Unmodified)
+// ==========================================
+const rawData = [
+    { q: "1. She ........ them to wait in the departure lounge till their flight number was called.", options: ["suggested", "asked", "warned", "inquired"], answer: 1, rule: "Reporting a polite command/request", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'ask' takes an object + to + infinitive when reporting requests.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> فعل (asked) معناه (طلب) وبييجي وراه مفعول به + to + المصدر.</div>" },
+    { q: "2. Emad asked me ........ to the party.", options: ["to come", "can I come", "whether I will come", "both a and b"], answer: 0, rule: "Reporting an invitation/request", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'asked me to come' reports an invitation using to + infinitive.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> (طلب مني أجي) بتترجم بـ asked me to come (المفعول + to + المصدر).</div>" },
+    { q: "3. The teacher asked the student how ........ the difficult equation.", options: ["to have solved", "he solves", "he had solved", "did he solve"], answer: 2, rule: "Reported Question (Past Perfect)", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Question word + subject + past perfect verb (action happened before asking).</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> بنرتب الفاعل قبل الفعل، والفعل بيتحول للماضي التام (حل المعادلة قبل ما المستر يسأله).</div>" },
+    { q: "4. Our mother asked us ........ tidy our room.", options: ["whether", "not to", "to not", "to"], answer: 3, rule: "Reporting Affirmative Command", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Reporting an order uses 'to + infinitive'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> ده أمر مثبت (روقوا الأوضة)، فبنربط بـ (to).</div>" },
+    { q: "5. Peter ........ me why he had accepted that position.", options: ["wondered", "told", "asked", "ordered"], answer: 1, rule: "Reporting Verb Meaning", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Here 'why' introduces a statement of reason, not a question, so 'told' is correct.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> هو مش بيسألني، هو (قالي ليه هو قبل الوظيفة)، فدي جملة خبرية بتاخد told.</div>" },
+    { q: "6. The scientist ........ when the sun sets, the temperature drops.", options: ["asked", "said that", "told", "wondered"], answer: 1, rule: "Reporting Facts", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Reporting a fact without a direct object uses 'said that'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> دي حقيقة علمية ومفيش مفعول به، فبنستخدم (said that).</div>" },
+    { q: "7. There was a lot of disagreement about ........ to approve the new budget.", options: ["who", "that", "if", "whether"], answer: 3, rule: "Preposition + whether", exp: "<div class='exp-en'>💡 <b>Explanation:</b> After prepositions (like 'about'), we MUST use 'whether', not 'if'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> بعد حروف الجر (زي about) لازم نستخدم whether ومينفعش if خالص.</div>" },
+    { q: "8. The manager asked what the employee ........ before the meeting started.", options: ["does", "was doing", "had done", "has done"], answer: 2, rule: "Sequence of Tenses (Past Perfect)", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'before the meeting started' implies an action completed before a past point, so past perfect.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الحدث حصل (قبل) ما الاجتماع يبدأ، فالأقدم دايماً بياخد ماضي تام (had done).</div>" },
+    { q: "9. \"When shall we meet?\" - They asked when they ........ meet.", options: ["would", "should", "will", "shall"], answer: 0, rule: "Modal Shift (shall -> would)", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'shall' for future intention shifts to 'would' in reported speech. (If it were asking for advice, it would be 'should').</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> لما shall تعبر عن مستقبل عادي بتتحول لـ would، لكن لو بتطلب نصيحة بتبقى should. هنا بيسأل هنتقابل إمتى (مستقبل).</div>" },
+    { q: "10. I ........ why I was late.", options: ["told", "was asked", "asked", "am asked"], answer: 1, rule: "Passive Reporting Verb", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Passive voice: Someone asked me -> I was asked.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> أنا اللي اتسألت (مبني للمجهول)، فبنختار (was asked).</div>" },
+    { q: "11. My mother asked why ........ that loud noise.", options: ["I was making", "was I making", "I will make", "had I made"], answer: 0, rule: "Reported Question Order", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Statement order: subject (I) + verb (was making).</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> بنرتب الفاعل قبل الفعل في الغير مباشر (I was making).</div>" },
+    { q: "12. My friend wanted to know ........ I was going to the club or not.", options: ["when", "why", "that", "whether"], answer: 3, rule: "Whether ... or not", exp: "<div class='exp-en'>💡 <b>Explanation:</b> The presence of 'or not' triggers the use of 'whether'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> وجود (or not) في الجملة بيخلينا نختار whether.</div>" },
+    { q: "13. Can you tell me why ........ the party so early?", options: ["have you left", "you had left", "you left", "did you leave"], answer: 2, rule: "Embedded Question Order", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'Can you tell me' is present. The embedded question uses past simple statement order ('you left').</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الطلب (Can you tell me) في المضارع، فبنرتب جملة الماضي عادي جداً فاعل ثم فعل (you left).</div>" },
+    { q: "14. The shop assistant asked why I ........ to change that tie.", options: ["have wanted", "wanted", "was wanted", "want"], answer: 1, rule: "Tense Shift (Present to Past)", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'asked' is past, so present simple 'want' shifts to past simple 'wanted'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> فعل القول ماضي، فبنحول المضارع لماضي بسيط (wanted).</div>" },
+    { q: "15. Samir ........ me why I had chosen that T-shirt.", options: ["ordered", "said", "inquired", "asked"], answer: 3, rule: "Reporting Verb with Object", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Only 'asked' can take a direct personal object ('me') among the question verbs.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> فعل (asked) هو الوحيد اللي ينفع ييجي وراه مفعول به (me).</div>" },
+    { q: "16. \"When will you be here?\" she asked. She asked me when ........ be there.", options: ["she would", "would I", "I would", "she will"], answer: 2, rule: "Word Order & Modal Shift", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Subject 'I' + shifted modal 'would'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> بنرتب الفاعل الأول (I) وبنحول will إلى would.</div>" },
+    { q: "17. I ........ you where I saw the criminal and you wrote down his name on a piece of paper.", options: ["told", "inquired", "wondered", "asked"], answer: 0, rule: "Statement meaning", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'where' here means 'the place that', it's a statement, so 'told' is correct.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> أنا (أخبرتك) بمكان المجرم مش بسألك، فبنستخدم told.</div>" },
+    { q: "18. \"Who broke the window?\" the teacher asked. The teacher asked who ........ the window.", options: ["has broken", "had he broken", "did break", "had broken"], answer: 3, rule: "Subject Question Shift", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'Who' acts as the subject. Past simple 'broke' shifts to past perfect 'had broken'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> Who هنا بتسأل عن الفاعل، وبنحول الماضي لماضي تام (had broken).</div>" },
+    { q: "19. \"How can I reach the station?\" the tourist wondered. The tourist wondered how ........ the station.", options: ["can he reach", "to reach", "could he reach", "he reaches"], answer: 1, rule: "Question word + to + infinitive", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'how to reach' is a standard reduced structure for 'how he could reach'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> نقدر نختصر السؤال بوضع (to + المصدر) بعد أداة الاستفهام (how to reach).</div>" },
+    { q: "20. \"When you arrive, give me a call,\" my father said. My father told me that when I ........ , I should give him a call.", options: ["had I arrived", "did I arrive", "arrived", "arrive"], answer: 2, rule: "Time Clause Tense Shift", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Present simple 'arrive' shifts to past simple 'arrived' in the time clause.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> المضارع (arrive) بيتحول للماضي (arrived) لأن الجملة بقت غير مباشر.</div>" },
+    { q: "21. \"If you study hard, you will pass,\" the teacher said. The teacher said that ........ I studied hard, I would pass.", options: ["if", "whether", "why", "where"], answer: 0, rule: "Conditional Retention", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'if' is retained from the original conditional sentence.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الجملة أصلها حالة If الأولى، فبننزل If زي ما هي ونحول الأزمنة للماضي.</div>" },
+    { q: "22. \"I'm busy now. Can you wait for me?\" Ali said. Ali said that he was busy then and ........ if I could wait for him.", options: ["wondered to", "said", "told me", "asked"], answer: 3, rule: "Conjoining Statement & Question", exp: "<div class='exp-en'>💡 <b>Explanation:</b> To link a statement to a reported question, we use 'and asked'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> عشان نربط جملة خبرية بسؤال، بنحط (and asked).</div>" },
+    { q: "23. I ........ whether I had finished the task or not by my manager.", options: ["was told", "asked", "was asked", "inquired"], answer: 2, rule: "Passive Reporting Verb", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'by my manager' indicates passive voice. 'I was asked' (someone asked me).</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> وجود (by my manager) بيأكد إن الجملة مجهول (أنا اتسألت)، فنختار was asked.</div>" },
+    { q: "24. We had a long talk about ........ we should sell the house.", options: ["whether", "weather", "that", "if"], answer: 0, rule: "Preposition + whether", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'whether' is used after prepositions like 'about', never 'if'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> بعد حروف الجر لازم whether.</div>" },
+    { q: "25. \"Shall I carry the bags for you?\" Samir said to the old lady. Samir ........ to carry the bags for the old lady.", options: ["said", "wondered", "suggested", "offered"], answer: 3, rule: "Reporting an Offer", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'Shall I...' is an offer, correctly reported with 'offered + to + infinitive'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> صيغة (Shall I) بتعبر عن عرض مساعدة، فبنختار الفعل offered.</div>" },
+    { q: "26. \"Shall we have lunch together?\" he said. He ........ having lunch together.", options: ["invited", "suggested", "offered", "asked"], answer: 1, rule: "Reporting a Suggestion (Shall we)", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'Shall we...' is a suggestion. 'suggested' takes a gerund (V-ing).</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> صيغة (Shall we) بتعبر عن اقتراح، والفعل اللي بياخد ing بعدها هو suggested.</div>" },
+    { q: "27. \"You have seen this film before, haven't you?\" she asked me. She asked me ........ I had seen that film before.", options: ["why", "that", "whether", "had"], answer: 2, rule: "Reporting Question Tags", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Question tags are Yes/No questions, so they are reported using 'if' or 'whether'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> السؤال المزيل بيتعامل معاملة سؤال بهل، فبنربط بـ whether أو if.</div>" },
+    { q: "28. The professor asked the students ........ they had finished the laboratory experiment.", options: ["if", "that", "what", "which"], answer: 0, rule: "Yes/No Connector", exp: "<div class='exp-en'>💡 <b>Explanation:</b> The sentence requires a Yes/No connector. 'if' fits properly.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> المعنى بيسأل هل خلصوا التجربة ولا لأ، فبنربط بـ if.</div>" },
+    { q: "29. Could you tell me why the system ........ working properly?", options: ["didn't", "hadn't", "weren't", "wasn't"], answer: 3, rule: "Embedded Question Tense", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'the system' is singular, so it takes 'wasn't'. No tense shift backward because 'Could you tell me' is present.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> النظام مفرد فبياخد wasn't (مش weren't)، والطلب مضارع فمش بنحول للماضي التام.</div>" },
+    { q: "30. I asked Ali if ........ his homework yet.", options: ["had he finished", "he has finished", "he had finished", "did he finish"], answer: 2, rule: "Reported Question Order & Tense", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Statement order (subject + verb) + past perfect ('had finished') due to past reporting verb 'asked'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الترتيب فاعل ثم فعل (he had finished).</div>" },
+    { q: "31. \"How many people were at the party?\" - She asked me how many people ........ at the party.", options: ["were they", "had been", "have been", "had they been"], answer: 1, rule: "Subject Question Shift", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'How many people' acts as the subject. Past simple 'were' shifts to past perfect 'had been'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الفعل were بيتحول للماضي التام (had been).</div>" },
+    { q: "32. Which of the following corrects the mistake in: \"She wondered why was I late.\"", options: ["was I -> I was", "late -> lately", "why -> when", "wondered -> asked"], answer: 0, rule: "Reported Question Word Order", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Reported questions must use statement word order: subject before verb.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الغلطة إن الفعل قبل الفاعل، والتصحيح إننا نعكسهم (I was).</div>" },
+    { q: "33. \"Shall I carry this heavy suitcase for you, Grandma?\" The best reported form is: ........", options: ["He suggested carrying the heavy suitcase for his grandma.", "He wondered if he shall carry the heavy suitcase for his grandma.", "He offered to carry the heavy suitcase for his grandma.", "He asked his grandma if he would carry the suitcase."], answer: 2, rule: "Reporting an Offer", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'Shall I' is an offer, correctly reported as 'offered to carry'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الجملة عرض مساعدة، فبنستخدم الفعل (offered to).</div>" },
+    { q: "34. \"Shall we revise the first three units tonight?\" The best reported form is: ........", options: ["He offered to revise the first three units.", "He suggested revising the first three units.", "He asked if we shall revise the first three units.", "He told me to revise the first three units."], answer: 1, rule: "Reporting a Suggestion", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'Shall we' is a suggestion, correctly reported as 'suggested + V-ing'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الجملة اقتراح، فبنستخدم الفعل (suggested) وبعده ing.</div>" },
+    { q: "35. \"Could you please lend me your camera for a day?\" The best reported form is: ........", options: ["He asked me if I could lend him my camera.", "He asked me to lend him my camera.", "He offered to lend me his camera.", "both a and b"], answer: 3, rule: "Reporting Polite Requests", exp: "<div class='exp-en'>💡 <b>Explanation:</b> A polite request can be reported with 'asked if' or 'asked to'. Both A and B are valid.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الطلب المهذب ممكن يتعمل كسؤال بـ if، وممكن كأمر بـ (to + المصدر). الاتنين صح.</div>" },
+    { q: "36. \"You have already finished your homework, haven't you?\" My mother ........", options: ["said that I had already finished my homework.", "asked if I had already finished my homework.", "asked haven't I finished my homework.", "asked if I have already finished my homework."], answer: 1, rule: "Reporting Question Tags", exp: "<div class='exp-en'>💡 <b>Explanation:</b> A question tag is a Yes/No question, reported with 'asked if' + statement order.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> السؤال المزيل بيتحول لسؤال بـ if مع ترتيب الجملة وتغيير الزمن للماضي التام.</div>" },
+    { q: "37. Choose the correct reported form for the following sentence: He said to me, \"Do you like coffee?\"", options: ["He asked me if you like coffee.", "He asked me if I liked coffee.", "He asked me if he likes coffee.", "He asked me if I had liked coffee."], answer: 1, rule: "Tense & Pronoun Shift", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'you' -> 'I'. Present 'like' -> Past 'liked'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> بنغير الضمير لـ I، والمضارع like بيتحول لماضي liked.</div>" },
+    { q: "38. Choose the correct reported form for the following sentence: He said, \"If I had seen her, I would have told her the news.\"", options: ["He said if he has seen her, he would tell her the news.", "He said that if he saw her, he would have told her the news.", "He said that if he saw her, he would tell her the news.", "He said that if he had seen her, he would have told her the news."], answer: 3, rule: "Third Conditional Retention", exp: "<div class='exp-en'>💡 <b>Explanation:</b> The third conditional does not shift its tenses in reported speech.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الحالة التالتة لـ If مبتتغيرش أزمنتها خالص في الغير مباشر.</div>" },
+    { q: "39. Choose the correct reported form: Mona said, \"If I had more time, I would travel around the world\"", options: ["Mona said that if she had more time, she would have traveled around the world.", "Mona said if she has more time, she will travel around the world.", "Mona said that if she had more time, she would travel around the world.", "Mona said that if she had had more time, she would have traveled around the world."], answer: 2, rule: "Second Conditional Retention", exp: "<div class='exp-en'>💡 <b>Explanation:</b> The second conditional generally does not shift in reported speech.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الحالة التانية لـ If غالباً مبتتغيرش أزمنتها وبتنزل زي ما هي.</div>" },
+    { q: "40. He asked me what time the film started. Which of the following is the correct direct question?", options: ["\"What time does the film start?\"", "\"What time did the film start?\"", "\"What time the film starts?\"", "\"What time has the film started?\""], answer: 0, rule: "Reported to Direct Reversal", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Past simple 'started' reverses back to present simple 'does ... start'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الفعل started في الماضي، فلما نرجعه لأصله المباشر بيكون مضارع بسيط (does start).</div>" },
+    { q: "41. Which of the following is the correct form of the reported speech of this sentence? \"Are you coming to the party?\" He asked.", options: ["He asked if I was coming to the party.", "He asked if I am coming to the party.", "He asked if was I coming to the party.", "He asked whether he was coming to the party."], answer: 0, rule: "Tense Shift & Order", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'you' -> 'I'. Present 'are coming' -> Past 'was coming'. Statement order.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> المضارع المستمر بيتحول لماضي مستمر، وبنرتب الفاعل الأول (I was coming).</div>" },
+    { q: "42. Which of the following is the correct form of the reported speech of this sentence? \"Where do you live?\" The teacher asked me.", options: ["The teacher asked me where do I live.", "The teacher asked me where did I live.", "The teacher asked me where I lived.", "The teacher told me where I lived."], answer: 2, rule: "Statement order & Tense shift", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Drop 'do', shift 'live' to past 'lived', keep statement order.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> بنحذف do وبنرتب الفاعل وبعده الفعل في الماضي (I lived).</div>" },
+    { q: "43. Which of the following is the correct form of the reported speech of this sentence? \"Do you like Italian food?\" she asked.", options: ["She asked if I like Italian food.", "She asked if I liked Italian food.", "She asked did I like Italian food.", "She asked if you liked Italian food."], answer: 1, rule: "Tense Shift", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Drop 'Do', 'you' -> 'I', 'like' -> 'liked'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> بنحذف Do ونحول المضارع like للماضي liked.</div>" },
+    { q: "44. Which of the following is the correct form of the reported speech of this sentence? \"Did you watch the match yesterday?\" he asked.", options: ["He asked if I have watched the match the day before.", "He asked if I had watched the match the day before.", "He asked if I watched the match yesterday.", "He asked did I watch the match the day before."], answer: 1, rule: "Past to Past Perfect", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'yesterday' -> 'the day before'. Past simple 'watch' -> Past perfect 'had watched'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الماضي البسيط بنحوله لماضي تام (had watched) والكلمة الدالة بتتغير.</div>" },
+    { q: "45. Which of the following is the correct form of the reported speech of this sentence? \"What are you doing now?\" she asked me.", options: ["She asked me what I was doing then.", "She asked me what was I doing now.", "She asked me what I am doing then.", "She asked me what I was doing now."], answer: 0, rule: "Time word & Tense shift", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'now' -> 'then'. Present continuous -> Past continuous ('was doing').</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> المضارع المستمر بيتحول لماضي مستمر، وnow بتتحول لـ then.</div>" },
+    { q: "46. He asked me when I'd be ready for the journey to France. Which of the following is the direct form for the above reported sentence?", options: ["He said to me, \"When you'll be ready for the journey to France?\"", "He said to me, \"When will you be ready for the journey to France?\"", "He said to me, \"When have you been ready for the journey to France?\"", "He said to me, \"When will he be ready for the journey to France?\""], answer: 1, rule: "Reported to Direct Reversal", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'I'd be' reverts back to 'will you be' with question inversion.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الفعل I'd be (اللي هو I would be) بيرجع لأصله المباشر كسؤال (will you be).</div>" },
+    { q: "47. Choose the correct reported speech for the following sentence: He said, \"You can solve your problems. Will you follow my advice?\"", options: ["He said that I could solve his problems and asked if he would follow my advice.", "He said that he could solve my problems and warned if I would follow his advice.", "He said that I could solve my problems and asked if I would follow his advice.", "He said that he could solve his problems and added if I would follow his advice."], answer: 2, rule: "Conjoining statement and question", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Shifts 'can' -> 'could', links with 'and asked', and shifts 'will' -> 'would'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> بنحول الضمائر (you -> I)، والأفعال للماضي (can -> could, will -> would)، وبنربط بـ (and asked if).</div>" },
+    { q: "48. Can you tell me what ........ about his experience?", options: ["his colleagues think", "do his colleagues think", "did his colleagues think", "his colleagues are thought"], answer: 0, rule: "Embedded Question Order (Present)", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'Can you tell me' is present. Statement order: subject ('his colleagues') + verb ('think').</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الطلب المؤدب في المضارع مبيغيرش الزمن للماضي، فبنرتب فاعل وبعده فعل بس (his colleagues think).</div>" },
+    { q: "49. The teacher asks her where ........ been.", options: ["you have", "she had", "has she", "she has"], answer: 3, rule: "Present Reporting Verb", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'asks' is present, so NO tense shift backwards. Statement order: 'she has'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> فعل القول مضارع (asks) فمش هنحول للماضي، وهنرتب الفاعل الأول (she has).</div>" },
+    { q: "50. She asked me whether ........ there before.", options: ["I went", "I go", "I had been", "had I been"], answer: 2, rule: "Tense Shift & Order", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Past experience shifts to past perfect 'I had been'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> بنرتب الفاعل قبل الفعل والزمن بيكون ماضي تام (I had been).</div>" },
+    { q: "51. He asked her if she ........ the boss the day before.", options: ["meets", "had met", "was meeting", "would meet"], answer: 1, rule: "Past to Past Perfect", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'the day before' demands past perfect 'had met'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الكلمة الدالة (the day before) بتجبرنا نختار الماضي التام (had met).</div>" },
+    { q: "52. Taha's mother asked him where ........ .", options: ["he had been", "has he been", "had he been", "he has been"], answer: 0, rule: "Statement Word Order", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Subject + shifted verb (he had been).</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الترتيب الصحيح فاعل ثم فعل (he had been).</div>" },
+    { q: "53. Samia asked Hala ........ she was doing anything the next day.", options: ["unless", "what", "without", "whether"], answer: 3, rule: "Yes/No Connector", exp: "<div class='exp-en'>💡 <b>Explanation:</b> The sentence requires a Yes/No connector. 'whether' is correct.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> ده سؤال بهل (بتعملي حاجة ولا لأ)، فبنربط بـ whether.</div>" },
+    { q: "54. I asked her if ........ .", options: ["did she like the candy", "she liked the candy", "she likes the candy", "does she like the candy"], answer: 1, rule: "Statement Order & Tense Shift", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Subject 'she' + past verb 'liked'. Drop 'did'/'does'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> بنحذف did/does وبنرتب الفاعل والفعل في الماضي (she liked).</div>" },
+    { q: "55. She wondered when ........ singing with the band.", options: ["do I begin", "did I begin", "I had begun", "had I begun"], answer: 2, rule: "Statement Order & Past Perfect", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Subject 'I' + past perfect 'had begun'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الترتيب فاعل ثم فعل في الماضي التام (I had begun).</div>" },
+    { q: "56. Which of the following is structurally correct?", options: ["I asked her that I had been.", "I asked her where had I been.", "I told her where I have been.", "I told her where I had been."], answer: 3, rule: "Statement Meaning vs Question", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'where I had been' functions as a noun clause (the place). 'told her' correctly reports the statement.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الجملة معناها أخبرتها بمكاني، فبنستخدم told وبنرتب الجملة فاعل وفعل ماضي تام (where I had been).</div>" },
+    { q: "57. She asked me where I ........ then.", options: ["was staying", "stay", "did stay", "am staying"], answer: 0, rule: "Time word 'then'", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'then' is shifted from 'now', requiring past continuous 'was staying'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> كلمة then أصلها now، فبنحول المضارع المستمر لماضي مستمر (was staying).</div>" },
+    { q: "58. I wondered ........ the package yet.", options: ["whether did he receive", "if he received", "whether he had received", "had he received"], answer: 2, rule: "Yet + Past Perfect", exp: "<div class='exp-en'>💡 <b>Explanation:</b> 'yet' with past reporting verb requires past perfect 'had received' and statement order.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> كلمة yet مع سؤال في الماضي بتجبرنا نستخدم ماضي تام مع ترتيب الجملة (he had received).</div>" },
+    { q: "59. He asked her ........ her keys.", options: ["how did she find", "how to found", "how she had found", "how she finds"], answer: 2, rule: "Tense Shift & Order", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Statement order 'she' + past perfect 'had found'.</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> الترتيب فاعل ثم فعل ماضي تام (she had found).</div>" },
+    { q: "60. Sarah ........ her brother how to fix her computer.", options: ["asked", "told", "said", "both a and b"], answer: 3, rule: "Reporting Question Word + infinitive", exp: "<div class='exp-en'>💡 <b>Explanation:</b> Both 'asked' and 'told' can precede an object + question word + to + infinitive (e.g., told him how to do it).</div><div class='exp-separator'></div><div class='exp-ar'>✨ <b>الخلاصة:</b> التركيبة (أداة استفهام + to + المصدر) ممكن تيجي مع asked وممكن تيجي مع told (علمه إزاي يصلحه)، فالاتنين صح.</div>" }
+];
+
+function initQuizData() {
+    let tempArray = JSON.parse(JSON.stringify(rawData));
+    shuffleArray(tempArray);
+    quizData = tempArray.map((item, index) => {
+        let correctText = item.options[item.answer];
+        shuffleArray(item.options);
+        return {
+            originalQ: item.q,
+            q: `${index + 1}. ` + item.q.replace(/^\d+\.\s*/, ''),
+            options: item.options,
+            answer: item.options.indexOf(correctText),
+            exp: item.exp,
+            rule: item.rule || "Grammar Rule"
+        };
+    });
+}
+
+function startQuiz() {
+    const input = document.getElementById("studentName").value.trim();
+    if (!input) { alert("أدخل هويتك لبدء التحدي!"); return; }
+    studentName = input; 
+    
+    initQuizData(); 
+    
+    document.getElementById("start-screen").style.display = "none";
+    document.getElementById("quiz-screen").style.display = "block";
+    document.getElementById("timer-container").style.display = "flex";
+    document.getElementById("eye-care-container").style.display = "flex";
+    
+    document.getElementById("hud-avatar").innerText = selectedAvatar;
+    document.getElementById("hud-name").innerText = studentName;
+    document.getElementById("hud-moving-avatar").innerText = selectedAvatar;
+
+    totalSeconds = quizData.length * 240; 
+    
+    if (!isTimeAttack) {
+        let m = Math.floor(totalSeconds / 60), s = totalSeconds % 60;
+        let displayM = m < 100 ? (m < 10 ? '0'+m : m) : m;
+        let displayS = s < 10 ? '0'+s : s;
+        document.getElementById("timer-text").innerText = `${displayM}:${displayS}`;
+    }
+
+    loadQuestion();
+    startTimer(); 
+}
+
+function loadQuestion() {
+    updateChromaShift();
+
+    if(isTimeAttack) { 
+        qTimeLeft = timeAttackLevel; 
+        document.getElementById("timer-box").classList.remove("danger"); 
+        let displayS = qTimeLeft < 10 ? '0' + qTimeLeft : qTimeLeft;
+        document.getElementById("timer-text").innerText = `00:${displayS}`;
+    }
+
+    const item = quizData[currentQuestion];
+    const optionsList = document.getElementById("options-list");
+    
+    optionsList.classList.remove("show-options");
+    optionsList.innerHTML = "";
+
+    item.options.forEach((opt, oIndex) => {
+        const div = document.createElement("div"); div.className = "option-item";
+        if (userAnswers[currentQuestion] === oIndex) div.classList.add("selected");
+        const letter = String.fromCharCode(65 + oIndex);
+        div.innerHTML = `<div class="opt-letter">${letter}</div> <div class="opt-text" style="direction: ltr;">${opt}</div>`;
+        div.onclick = () => selectOption(oIndex);
+        optionsList.appendChild(div);
+    });
+
+    document.getElementById("question-text-content").innerText = item.q;
+    optionsList.classList.add("show-options");
+
+    document.getElementById("progress-count").innerText = `Q: ${currentQuestion + 1} / ${quizData.length}`;
+    document.getElementById("energy-bar").style.width = `${Math.round(((currentQuestion + 1) / quizData.length) * 100)}%`;
+
+    document.getElementById("prev-btn").disabled = currentQuestion === 0;
+    if(isTimeAttack) document.getElementById("prev-btn").style.display = "none";
+
+    document.getElementById("next-btn").style.display = (currentQuestion === quizData.length - 1) ? "none" : "inline-flex";
+    document.getElementById("submit-btn").style.display = (currentQuestion === quizData.length - 1) ? "inline-flex" : "none";
+}
+
+function selectOption(oIndex) {
+    userAnswers[currentQuestion] = oIndex;
+    const optionsList = document.getElementById("options-list");
+    Array.from(optionsList.children).forEach((child, i) => {
+        if(i === oIndex) child.classList.add("selected"); else child.classList.remove("selected");
+    });
+}
+
+function nextQuestion(force = false) {
+    if (!force && userAnswers[currentQuestion] === undefined) { alert("لازم تختار إجابة الأول عشان تكمل!"); return; }
+    if (currentQuestion < quizData.length - 1) { 
+        currentQuestion++;
+        if (currentQuestion % 4 === 0 && currentQuestion !== 0) triggerTeacherCheer();
+        loadQuestion();
+        
+        if (isTimeAttack) {
+            startTimer();
+        }
+    }
+}
+
+function prevQuestion() { 
+    if (currentQuestion > 0) { 
+        currentQuestion--; 
+        loadQuestion(); 
+        if (isTimeAttack) startTimer();
+    } 
+}
+
+function startTimer() {
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+        if(isTimeAttack) {
+            qTimeLeft--;
+            let displayS = qTimeLeft < 10 ? '0' + qTimeLeft : qTimeLeft;
+            document.getElementById("timer-text").innerText = `00:${displayS}`;
+            if (qTimeLeft <= 5) {
+                document.getElementById("timer-box").classList.add("danger");
+                document.getElementById("app-container").classList.add("shake-active");
+                setTimeout(()=> document.getElementById("app-container").classList.remove("shake-active"), 400);
+            } else { 
+                document.getElementById("timer-box").classList.remove("danger"); 
+            }
+            
+            if (qTimeLeft <= 0) {
+                if(userAnswers[currentQuestion] === undefined) { userAnswers[currentQuestion] = -1; }
+                if(currentQuestion < quizData.length - 1) {
+                    nextQuestion(true);
+                } else {
+                    calculateScore(); 
+                }
+            }
+        } else {
+            totalSeconds--;
+            let m = Math.floor(totalSeconds / 60), s = totalSeconds % 60;
+            let displayM = m < 100 ? (m < 10 ? '0'+m : m) : m;
+            let displayS = s < 10 ? '0'+s : s;
+            document.getElementById("timer-text").innerText = `${displayM}:${displayS}`;
+            
+            if (totalSeconds <= 300) {
+                document.getElementById("timer-box").classList.add("danger");
+            } else {
+                document.getElementById("timer-box").classList.remove("danger");
+            }
+            
+            if (totalSeconds <= 0) { 
+                clearInterval(timerInterval); 
+                calculateScore(); 
+            }
+        }
+    }, 1000);
+}
+
+function togglePause() {
+    if (isPaused) {
+        isPaused = false;
+        document.getElementById('pause-modal').style.display = 'none';
+        startTimer(); 
+    } else {
+        if (pauseCount >= 3) {
+            alert("استنفدت كل محاولات الإيقاف (3/3)!");
+            return;
+        }
+        isPaused = true;
+        pauseCount++;
+        clearInterval(timerInterval);
+        document.getElementById('pause-count-msg').innerText = `استخدمت (${pauseCount} من 3) محاولات إيقاف.`;
+        document.getElementById('pause-modal').style.display = 'flex';
+    }
+}
+
+function calculateScore() {
+    if(isSubmitting) return; 
+    isSubmitting = true;
+
+    try {
+        clearInterval(timerInterval);
+        
+        document.getElementById("quiz-screen").style.display = "none";
+        document.getElementById("timer-container").style.display = "none";
+        document.getElementById("eye-care-container").style.display = "none";
+        document.getElementById("result-screen").style.display = "block";
+        window.scroll({ top: 0, left: 0 });
+
+        let score = 0; 
+        const reviewList = document.getElementById("review-list"); 
+        if(reviewList) reviewList.innerHTML = "";
+
+        let wrongAnswersHTML = "";
+        let ruleMistakes = {};
+
+        quizData.forEach((item, index) => {
+            const isCorrect = userAnswers[index] === item.answer;
+            if (isCorrect) {
+                score++;
+            } else {
+                ruleMistakes[item.rule] = (ruleMistakes[item.rule] || 0) + 1;
+            }
+            
+            let userOptText = "لم يتم الحل ❌";
+            if (userAnswers[index] !== undefined && userAnswers[index] !== -1) {
+                userOptText = item.options[userAnswers[index]];
+            }
+            const correctOpt = item.options[item.answer];
+
+            if (!isCorrect) {
+                wrongAnswersHTML += `<div style="margin-bottom:15px; border-bottom:1px solid #ddd; padding-bottom:10px; direction: rtl; text-align: right;">
+                    <b style="direction: ltr; display: block; text-align: left;">Q: ${item.originalQ}</b><br>
+                    <span style="color:red;">إجابة الطالب: <span style="direction:ltr; display:inline-block;">${userOptText}</span></span><br>
+                    <span style="color:green;">الإجابة الصحيحة: <span style="direction:ltr; display:inline-block;">${correctOpt}</span></span><br>
+                    <div style="margin-top: 10px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 8px;">
+                        ${item.exp}
+                    </div>
+                    <small style="display:block; margin-top:8px; color:#555;">📌 القاعدة: ${item.rule}</small>
+                </div>`;
+            }
+
+            const div = document.createElement("div");
+            div.className = `review-item ${isCorrect ? 'is-correct is-correct-item' : 'is-wrong is-wrong-item'}`;
+            div.innerHTML = `<div style="font-weight:800;font-size:16px;margin-bottom:8px; direction: ltr; color: var(--text-main);">${item.q}</div>
+                <div style="direction: rtl; color: var(--text-muted);">إجابتك: <b style="color:${isCorrect?'var(--success-color)':'var(--error-color)'}; direction: ltr; display: inline-block;">${userOptText}</b></div>
+                ${!isCorrect ? `<div style="color:var(--success-color);font-weight:800;margin-top:4px; direction: rtl;">الإجابة الصحيحة: <span style="direction: ltr; display: inline-block;">${correctOpt}</span></div>` : ''}
+                <div class="explanation-box">${item.exp}</div>`;
+            if(reviewList) reviewList.appendChild(div);
+        });
+
+        const percent = Math.round((score / quizData.length) * 100);
+        window.finalScore = score; window.finalPercent = percent;
+
+        let weakestRule = "لا يوجد أخطاء 🏆";
+        let maxMistakes = 0;
+        for (let r in ruleMistakes) {
+            if (ruleMistakes[r] > maxMistakes) {
+                maxMistakes = ruleMistakes[r];
+                weakestRule = r;
+            }
+        }
+        if(wrongAnswersHTML === "") wrongAnswersHTML = "الطالب قفل التقييم بامتياز! مفيش ولا غلطة 🏆";
+
+        document.body.className = "theme-1"; 
+        
+        document.getElementById("student-display-name").innerHTML = `<span class="result-avatar">${selectedAvatar}</span> ${studentName}`;
+        document.getElementById("score-percentage").innerText = `${score} / ${quizData.length}`;
+        document.getElementById("score-percent-text").innerText = `Accuracy: ${percent}%`;
+        
+        let modTxt = isTimeAttack ? " (Time Attack 🔥)" : " (Classic Mode)";
+        document.getElementById("score-details").innerText = `تم إنهاء التقييم بنجاح! ${modTxt}`;
+
+        let badge = percent >= 90 ? "👑 النخبة (Elite)" : percent >= 75 ? "🔥 أداء متميز (Pro)" : "🌱 محاولة مبشرة (Challenger)";
+        document.getElementById("badge-award-box").innerText = badge;
+        
+        if (percent >= 80) document.getElementById("cert-btn").style.display = "inline-flex";
+
+        setTimeout(() => {
+            try { soundBossWin(); } catch(e){}
+            try { initScratchCard(); } catch(e){}
+            try {
+                let confColor = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#E024C5';
+                if (percent >= 80 && typeof confetti === 'function') confetti({ particleCount: 300, spread: 150, origin: { y: 0.6 }, colors: ['#050510', confColor, '#FFFFFF'] });
+            } catch(e){}
+            
+            try {
+                let usedTime = isTimeAttack ? "Time Attack" : ( (quizData.length * 240) - totalSeconds) + "s";
+                let payload = new URLSearchParams({
+                    examName: "Neon Cyber-Matrix: Reported Questions (60 Qs)",
+                    studentName: studentName,
+                    score: `${score} / ${quizData.length}`,
+                    percentage: percent,
+                    date: new Date().toLocaleString('en-GB'),
+                    timeSpent: usedTime,
+                    wrongAnswers: wrongAnswersHTML,
+                    cheatWarnings: cheatWarnings,
+                    weakestRule: weakestRule
+                });
+
+                fetch(SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: payload
+                }).catch(err => console.log("Script sync error:", err));
+            } catch(e){}
+        }, 100);
+
+    } catch(e) { console.error("Error:", e); alert("حدث خطأ تقني أثناء معالجة النتيجة."); }
+}
+
+function shareToParentWhatsApp() {
+    let txt = `👨‍👩‍👧 تقرير أداء - التحدي السيبراني\n👤 الطالب: ${studentName}\n📊 النسبة: ${finalPercent}%\n✨ تحت إشراف مستر أيمن كامل.`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(txt)}`, '_blank');
+}
+function shareToTeacherWhatsApp() {
+    let txt = `👨‍🏫 تقرير تسليم - التحدي السيبراني\n👤 الطالب: ${studentName}\n🎯 الدرجة: ${finalScore} / ${quizData.length}\n📊 النسبة: ${finalPercent}%`;
+    window.open(`https://wa.me/201284749899?text=${encodeURIComponent(txt)}`, '_blank');
+}
+function sharePeerChallenge() {
+    let txt = `🔥 أنا جبت ${finalPercent}% في التحدي التكنولوجي لمستر أيمن كامل! تقدر تكسر السكور بتاعي؟ 🚀`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(txt)}`, '_blank');
+}
+
+function downloadSmartRevision() {
+    document.body.classList.add('print-errors-only');
+    window.print();
+    setTimeout(() => { document.body.classList.remove('print-errors-only'); }, 500);
+}
+
+function downloadCertificate() {
+    const canvas = document.createElement('canvas'); canvas.width = 1000; canvas.height = 700; const ctx = canvas.getContext('2d');
+    let accent = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#E024C5';
+
+    ctx.fillStyle = '#050510'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.save(); ctx.translate(canvas.width / 2, canvas.height / 2); ctx.rotate(-Math.PI / 6);
+    ctx.globalAlpha = 0.05; ctx.font = "bold 110px 'Outfit'"; ctx.fillStyle = accent;
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText("MR. AYMAN KAMEL", 0, -60); ctx.fillText("CYBER ELITE", 0, 70); ctx.restore();
+
+    ctx.strokeStyle = accent; ctx.lineWidth = 10; ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
+    ctx.globalAlpha = 0.2; ctx.lineWidth = 3; ctx.strokeRect(42, 42, canvas.width - 84, canvas.height - 84); ctx.globalAlpha = 1.0;
+
+    ctx.textAlign = "center"; ctx.fillStyle = accent; ctx.font = "bold 45px 'Outfit'";
+    ctx.fillText("✨ Certificate of Ultimate Mastery ✨", canvas.width / 2, 120);
+
+    ctx.fillStyle = "#8892B0"; ctx.font = "30px 'Outfit'";
+    ctx.fillText("This prestigious document is awarded to the elite student:", canvas.width / 2, 220);
+
+    ctx.fillStyle = "#F8FAFC"; ctx.font = "bold 65px 'Cairo'";
+    ctx.fillText(studentName, canvas.width / 2, 320);
+
+    ctx.fillStyle = "#8892B0"; ctx.font = "25px 'Outfit'";
+    ctx.fillText(`For successfully decoding "Reported Questions" with an accuracy of`, canvas.width / 2, 420);
+
+    ctx.fillStyle = "#00F0FF"; ctx.font = "bold 55px 'Outfit'";
+    ctx.fillText(`${finalScore} / ${quizData.length}  (${finalPercent}%)`, canvas.width / 2, 500);
+
+    ctx.fillStyle = accent; ctx.font = "22px 'Outfit'";
+    ctx.fillText("System Architect: Mr. Ayman Kamel", canvas.width / 2, 600);
+    
+    let d = new Date(); ctx.font = "18px 'Outfit'";
+    ctx.fillText("Issue Date: " + d.toLocaleDateString('en-GB'), canvas.width / 2, 640);
+
+    ctx.globalAlpha = 0.6; ctx.textAlign = "left"; ctx.font = "16px 'Outfit'";
+    ctx.fillText("ID: CYB-" + d.getFullYear() + "-" + Math.floor(Math.random()*90000+10000), 55, 655);
+    ctx.globalAlpha = 1.0;
+
+    const link = document.createElement('a'); link.download = `Cyber_Mastery_${studentName}.png`;
+    link.href = canvas.toDataURL('image/png'); link.click();
+}
+</script>
+</body>
+</html>
